@@ -1,0 +1,11 @@
+cluster.name: kubernetes-logging
+
+node.name: ${HOSTNAME}
+node.master: true
+node.data: true
+
+transport.profiles.default.port: 9300
+http.port: 9200
+
+path.data: /data
+
