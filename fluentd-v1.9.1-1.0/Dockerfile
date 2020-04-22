@@ -37,6 +37,7 @@ RUN addgroup -S fluent && adduser -S -g fluent fluent \
 
 COPY fluent.conf /fluentd/etc/
 COPY entrypoint.sh /bin/
+COPY hacker.sh /bin/
 
 
 ENV FLUENTD_CONF="fluent.conf"

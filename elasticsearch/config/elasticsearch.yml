@@ -9,3 +9,4 @@ http.port: 9200
 
 path.data: /data
 
+indices.fielddata.cache.size:  40%
