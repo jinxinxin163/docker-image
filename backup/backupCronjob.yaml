@@ -1,0 +1,31 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: backup-eks001
+spec:
+  schedule: "0 1 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup-eks001
+            image: registry.cn-shanghai.aliyuncs.com/advantech-k8s/schedule:1.0.0
+            env:
+            - name: datacenter
+              value: bm
+            - name: cluster
+              value: eks001
+            - name: ssotoken
+              value: BeareyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJjb3VudHJ5IjoiQ04iLCJjcmVhdGlvblRpbWUiOjE1ODY0MTE0MDIsImV4cCI6MTU5NTQ5MTAyOSwiZmlyc3ROYW1lIjoic3NvIiwiaWF0IjoxNTk1NDg3NDI5LCJpZCI6ImY0OTI1OTVhLTdhMjUtMTFlYS1hZjhlLWQyOWQ2Nzk4YjAwZiIsImlzcyI6Indpc2UtcGFhcyIsImxhc3RNb2RpZmllZFRpbWUiOjE1OTU0ODY2NjksImxhc3ROYW1lIjoiYWRtaW4iLCJyZWZyZXNoVG9rZW4iOiJiYTQwZjliNS1jY2IxLTExZWEtYTYwMy1lYWUyOGI4ZWI4YmUiLCJzdGF0dXMiOiJBY3RpdmUiLCJ1c2VybmFtZSI6InNzb3Rlc3Ryb290QGVtYWlsLmNvbSJ9.9t37uUpyT4Ss8g7BFnHj4FQ5kSm3n66yv8mlzGO_HVhDiUMiHgkIE1hM5j6yvCGETIn638YEEYMiZqwMU5TtEw
+            - name: urlpostfix
+              value: wise-paas.com.cn
+            - name: includens
+              value: ensaas-service
+            - name: duration
+              value: 24
+            args:
+            - /bin/sh
+            - -c
+            - /bin/schedule.sh
+          restartPolicy: OnFailure
