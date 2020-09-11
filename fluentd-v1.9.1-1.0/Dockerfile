@@ -24,6 +24,7 @@ RUN apk update \
  && gem install fluentd -v 1.9.1 \
  && gem install bigdecimal -v 1.4.4 \
  && gem install fluent-plugin-elasticsearch \
+ && gem install fluent-plugin-kafka \
  && apk del .build-deps \
  && rm -rf /tmp/* /var/tmp/* /usr/lib/ruby/gems/*/cache/*.gem
 
