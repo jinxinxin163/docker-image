@@ -7,10 +7,11 @@ echo "includens: $includens"
 echo "excludens: $excludens"
 echo "duration: $duration"
 echo "storage: $storage"
+echo "atcluster: $atcluster"
 nowtime=`date +%Y%m%d%H%M%S`
 backupname=${datacenter}-${cluster}-${nowtime}
 echo "backupname: ${backupname}"
-bkapiurl=http://api-backup-ensaas.${datacenter}.${urlpostfix}/v1/backup/backup/datacenter/${datacenter}/cluster/${cluster}
+bkapiurl=http://api-backup-${atcluster}.${urlpostfix}/v1/backup/backup/datacenter/${datacenter}/cluster/${cluster}
 echo "api url: ${bkapiurl}"
 curl -XPOST $bkapiurl -H 'Content-Type: application/json' -H 'Admin: true' -H "Authorization: $ssotoken" -d"
 {
