@@ -7,8 +7,10 @@ echo "duration: $duration"
 echo "namespace: $namespace"
 echo "storage: $storage"
 echo "atcluster: $atcluster" 
+echo "schedulename": $schedulename"
+
 nowtime=`date +%Y%m%d%H%M%S`
-backupname=${cluster}-${namespace}-${nowtime}
+backupname=${schedulename}-${nowtime}
 echo "backupname: ${backupname}"
 bkapiurl=http://api-backup-${atcluster}.${urlpostfix}/v1/backup/backup/datacenter/${datacenter}/cluster/${cluster}/namespace/${namespace}
 echo "api url: ${bkapiurl}"
