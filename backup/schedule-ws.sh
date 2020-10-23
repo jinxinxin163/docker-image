@@ -9,7 +9,7 @@ echo "workspace: $workspace"
 echo "duration: $duration"
 echo "storage: $storage"
 echo "atcluster: $atcluster"
-echo "schedulename": $schedulename"
+echo "schedulename: $schedulename"
 
 nowtime=`date +%Y%m%d%H%M%S`
 backupname=${schedulename}-${nowtime}
