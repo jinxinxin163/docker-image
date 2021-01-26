@@ -25,6 +25,19 @@ export MINIMUM_MASTER_NODES=${MINIMUM_MASTER_NODES:-2}
 
 chown -R elasticsearch:elasticsearch /data
 
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+./bin/elasticsearch-plugin install -b repository-s3
+
+./bin/elasticsearch-keystore create
+sh -c '/bin/echo -e "minio" | sh ./bin/elasticsearch-keystore add s3.client.default.access_key'
+sh -c '/bin/echo -e "minio123" | sh ./bin/elasticsearch-keystore add s3.client.default.secret_key'
+chmod 777 /usr/share/elasticsearch/config/elasticsearch.keystore
+
+#./bin/elasticsearch-keystore remove s3.client.default.access_key
+#echo "minio"|./bin/elasticsearch-keystore add  s3.client.default.access_key
+#./bin/elasticsearch-keystore remove s3.client.default.secret_key
+#echo "minio123"|./bin/elasticsearch-keystore add s3.client.default.secret_key
+
 ./bin/elasticsearch_logging_discovery >> ./config/elasticsearch.yml
 exec su elasticsearch -c /usr/share/elasticsearch/bin/docker-entrypoint.sh
 #exec su elasticsearch -c /elastic-entrypoint.sh
